@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres
+    restart: on-failure
+    env_file:
+      - ./backend/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  api:
+    depends_on:
+      - postgres
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "10002:10002"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend/src:/usr/src/app/src
+
+volumes:
+  postgres-data:

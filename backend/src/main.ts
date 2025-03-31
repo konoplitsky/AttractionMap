@@ -4,13 +4,10 @@ import * as process from 'node:process';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const PORT = process.env.PORT || 7000;
+  const PORT = process.env.PORT || 10002;
   const app = await NestFactory.create(AppModule);
 
-  const config = new DocumentBuilder()
-    .setTitle('Attraction Map')
-    .setVersion('1.0')
-    .build();
+  const config = new DocumentBuilder().setTitle('Attraction Map').setVersion('1.0').build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api', app, document);
