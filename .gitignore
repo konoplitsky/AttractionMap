@@ -3,7 +3,7 @@
 # compiled output
 backend/dist
 backend/node_modules
-backend/build
+backend/.env
 
 # Logs
 logs

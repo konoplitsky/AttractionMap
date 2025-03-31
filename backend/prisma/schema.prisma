@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Attraction {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  createAt    DateTime @default(now())
+  rating      Int      @default(1)
+  photo       String
+  location    String
+  latitude    Float
+  longitude   Float
+  mapLink     String
+  status      Status   @default(PLANNED)
+}
+
+enum Status {
+  PLANNED
+  VISITED
+}
