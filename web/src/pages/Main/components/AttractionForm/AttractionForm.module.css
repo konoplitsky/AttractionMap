@@ -1,0 +1,12 @@
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.fieldsBox {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+}

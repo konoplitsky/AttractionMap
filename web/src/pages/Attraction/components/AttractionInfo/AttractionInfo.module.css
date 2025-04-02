@@ -1,0 +1,12 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

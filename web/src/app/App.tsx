@@ -1,10 +1,4 @@
-import { Button } from '@gravity-ui/uikit';
+import { RouterProvider } from 'react-router-dom';
+import { appRouter } from './router/AppRouter.tsx';
 
-const App = () => (
-    <div>
-      <Button>123</Button>
-    </div>
-  )
-
-
-export default App
+export const App = () => <RouterProvider router={appRouter} />;

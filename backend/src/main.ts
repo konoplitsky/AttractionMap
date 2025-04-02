@@ -9,22 +9,24 @@ async function bootstrap() {
   const PORT = process.env.PORT || 10002;
   const app = await NestFactory.create(AppModule);
 
-  const config = new DocumentBuilder().setTitle('Attraction Map').setVersion('1.0').build();
+  app.enableCors({
+    origin: process.env.URL_CLIENT,
+    methods: 'GET,POST,PATCH,DELETE,PUT',
+    credentials: true
+  });
 
+  const config = new DocumentBuilder().setTitle('Main Map').setVersion('1.0').build();
   const document = SwaggerModule.createDocument(app, config);
 
-  // Генерируем YAML-файл
   const yamlDocument = YAML.stringify(document);
   writeFileSync('./swagger.yaml', yamlDocument);
 
-  // Настраиваем Swagger UI
   SwaggerModule.setup('/api', app, document, {
     swaggerOptions: {
       urls: [{ url: '/api-docs.yaml', name: 'Swagger YAML' }]
     }
   });
 
-  // Раздаём YAML через Express
   app.use('/api-docs.yaml', (_, res) => {
     res.setHeader('Content-Type', 'text/yaml');
     res.send(yamlDocument);
