@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Status } from '@prisma/client';
 
 export class GetAttractionDto {
   @ApiProperty({ description: 'Id' })
@@ -32,5 +33,5 @@ export class GetAttractionDto {
   mapLink: string;
 
   @ApiProperty({ description: 'Статус' })
-  status: string;
+  status: Status;
 }

@@ -5,13 +5,10 @@ import { CreateAttractionDto } from './dto/createAttraction.dto';
 import { FilesService } from '../files/files.service';
 import { MapsHelper } from '../utils/helpers/MapsHelper';
 import { UpdateAttractionDto } from './dto/updateAttraction';
-
-interface IAttractionService {
-  saveAttraction(dto: CreateAttractionDto, photo: any): Promise<GetAttractionDto>;
-}
+import { UpdateStatusDto } from './dto/updateStatusDto';
 
 @Injectable()
-export class AttractionService implements IAttractionService {
+export class AttractionService {
   constructor(
     private attractionRepository: AttractionRepository,
     private fileService: FilesService
@@ -49,5 +46,9 @@ export class AttractionService implements IAttractionService {
 
   async deleteAttraction(id: string) {
     return this.attractionRepository.deleteAttraction(id);
+  }
+
+  async updateAttractionStatus(dto: UpdateStatusDto) {
+    return this.attractionRepository.updateStatus(dto);
   }
 }

@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres
+    image: postgres:15-alpine
     restart: on-failure
     env_file:
       - ./backend/.env
@@ -19,8 +19,6 @@ services:
       - "10002:10002"
     env_file:
       - ./backend/.env
-    volumes:
-      - ./backend/src:/usr/src/app/src
 
 volumes:
   postgres-data:

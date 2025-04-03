@@ -17,6 +17,7 @@ import { CreateAttractionDto } from './dto/createAttraction.dto';
 import { GetAttractionDto } from './dto/getAttraction.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UpdateAttractionDto } from './dto/updateAttraction';
+import { UpdateStatusDto } from './dto/updateStatusDto';
 
 @ApiTags('Достопримечательность')
 @Controller('/api/attraction')
@@ -65,5 +66,13 @@ export class AttractionController {
   @HttpCode(HttpStatus.OK)
   delete(@Param('id') id: string) {
     return this.attractionService.deleteAttraction(id);
+  }
+
+  @ApiOperation({ summary: 'Изменить статус' })
+  @ApiResponse({ type: GetAttractionDto })
+  @Put('status')
+  @HttpCode(HttpStatus.OK)
+  updateStatus(@Body() dto: UpdateStatusDto) {
+    return this.attractionService.updateAttractionStatus(dto);
   }
 }
