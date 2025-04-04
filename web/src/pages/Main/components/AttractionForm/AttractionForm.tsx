@@ -49,13 +49,11 @@ export const AttractionForm = ({ type }: AttractionFormProps) => {
       <div className={styles.fieldsBox}>
         <TextInput
           placeholder='Широта'
-          type='number'
           {...form.register('latitude')}
           error={form.errors.latitude?.message}
         />
         <TextInput
           placeholder='Долгота'
-          type='number'
           {...form.register('longitude')}
           error={form.errors.longitude?.message}
         />
