@@ -1,4 +1,4 @@
-import { Container, Loader, Text } from '@gravity-ui/uikit';
+import { Loader, Text } from '@gravity-ui/uikit';
 import { AttractionsTable } from './components/AttractionTable/AttractionsTable.tsx';
 import { ModalsContainer } from './components/ModalsContainer/ModalsContainer.tsx';
 import { Info } from './components/Info/Info.tsx';
@@ -31,7 +31,7 @@ export const Main = () => {
       <div className={styles.container}>
         <Text variant='display-3'>Достопримечательности</Text>
         <Info />
-        <Container>{renderTable()}</Container>
+        {renderTable()}
         <ModalsContainer />
       </div>
     </Providers>
