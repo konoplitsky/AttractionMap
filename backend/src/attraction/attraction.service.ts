@@ -5,7 +5,6 @@ import { CreateAttractionDto } from './dto/createAttraction.dto';
 import { FilesService } from '../files/files.service';
 import { MapsHelper } from '../utils/helpers/MapsHelper';
 import { UpdateAttractionDto } from './dto/updateAttraction';
-import { UpdateStatusDto } from './dto/updateStatusDto';
 
 @Injectable()
 export class AttractionService {
@@ -46,9 +45,5 @@ export class AttractionService {
 
   async deleteAttraction(id: string) {
     return this.attractionRepository.deleteAttraction(id);
-  }
-
-  async updateAttractionStatus(dto: UpdateStatusDto) {
-    return this.attractionRepository.updateStatus(dto);
   }
 }

@@ -1,6 +1,6 @@
 import { Modal } from '@gravity-ui/uikit';
-import AttractionForm from '@/pages/Main/components/AttractionForm/AttractionForm.tsx';
-import { useModal } from '@/pages/Main/context/modal';
+import { AttractionForm } from '../AttractionForm/AttractionForm.tsx';
+import { useModal } from '../../contexts/modal';
 
 export const ModalsContainer = () => {
   const { isModalOpen, closeModal, isUpdateModalOpen, closeUpdateModal } = useModal();

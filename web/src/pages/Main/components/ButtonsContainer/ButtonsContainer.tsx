@@ -1,7 +1,7 @@
 import styles from '@/pages/Main/Main.module.css';
 import { Button } from '@gravity-ui/uikit';
-import { useRole } from '@/pages/Main/context/role/useRole.ts';
-import { typeRole } from '@/pages/Main/lib/const.ts';
+import { useRole } from '../../contexts/role';
+import { typeRole } from '../../lib/const.ts';
 
 export const ButtonsContainer = () => {
   const { role, toggleRole } = useRole();

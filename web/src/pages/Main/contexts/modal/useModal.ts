@@ -1,4 +1,4 @@
 import { useContext } from 'react';
-import { ModalContext } from '@/pages/Main/context/modal/ModalContext.tsx';
+import { ModalContext } from './ModalContext';
 
 export const useModal = () => useContext(ModalContext);

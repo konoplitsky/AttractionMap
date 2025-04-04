@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import { ModalProvider } from '@/pages/Main/context/modal/ModalProvider.tsx';
-import { RoleProvider } from '@/pages/Main/context/role/RoleProvider.tsx';
+import { RoleProvider } from './contexts/role';
+import { ModalProvider } from './contexts/modal';
+import { AttractionIdProvider } from './contexts/attractionId';
 
 interface ProvidersProps {
   children?: ReactNode;
@@ -8,6 +9,8 @@ interface ProvidersProps {
 
 export const Providers = ({ children }: ProvidersProps) => (
   <RoleProvider>
-    <ModalProvider>{children}</ModalProvider>
+    <AttractionIdProvider>
+      <ModalProvider>{children}</ModalProvider>
+    </AttractionIdProvider>
   </RoleProvider>
 );

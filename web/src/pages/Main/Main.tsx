@@ -1,4 +1,4 @@
-import { Loader, Text } from '@gravity-ui/uikit';
+import { Container, Loader, Text } from '@gravity-ui/uikit';
 import { AttractionsTable } from './components/AttractionTable/AttractionsTable.tsx';
 import { ModalsContainer } from './components/ModalsContainer/ModalsContainer.tsx';
 import { Info } from './components/Info/Info.tsx';
@@ -20,12 +20,18 @@ export const Main = () => {
     );
   }
 
+  const renderTable = () => {
+    if (attractions.length === 0) return <Text>Нет доступных достопримечательностей</Text>;
+
+    return <AttractionsTable attractions={attractions} />;
+  };
+
   return (
     <Providers>
       <div className={styles.container}>
         <Text variant='display-3'>Достопримечательности</Text>
         <Info />
-        <AttractionsTable attractions={attractions} />
+        <Container>{renderTable()}</Container>
         <ModalsContainer />
       </div>
     </Providers>

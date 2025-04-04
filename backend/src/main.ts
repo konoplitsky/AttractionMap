@@ -15,7 +15,7 @@ async function bootstrap() {
     credentials: true
   });
 
-  const config = new DocumentBuilder().setTitle('Main Map').setVersion('1.0').build();
+  const config = new DocumentBuilder().setTitle('Attraction Map').setVersion('1.0').build();
   const document = SwaggerModule.createDocument(app, config);
 
   const yamlDocument = YAML.stringify(document);

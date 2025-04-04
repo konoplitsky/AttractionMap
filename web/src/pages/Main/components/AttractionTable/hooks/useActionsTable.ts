@@ -1,12 +1,12 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { TableActionConfig, TableDataItem } from '@gravity-ui/uikit';
 import { useDeleteAttractionMutation } from '../../../api/hooks';
-import { useModal } from '../../../context/modal';
-import { useRole } from '@/pages/Main/context/role';
+import { useModal } from '../../../contexts/modal';
+import { useAttractionId } from '@/pages/Main/contexts/attractionId';
 
 export const useActionsTable = () => {
   const { openUpdateModal } = useModal();
-  const { setIdAttraction } = useRole();
+  const { setAttractionId } = useAttractionId();
 
   const queryClient = useQueryClient();
   const deleteAction = useDeleteAttractionMutation();
@@ -19,7 +19,7 @@ export const useActionsTable = () => {
 
   const handleUpdate = (item: TableDataItem) => {
     const attraction = item as Attraction;
-    setIdAttraction(attraction.id);
+    setAttractionId(attraction.id);
     openUpdateModal();
   };
 

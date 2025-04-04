@@ -1,8 +1,8 @@
 import { Button } from '@gravity-ui/uikit';
 import { ButtonsContainer } from '../ButtonsContainer/ButtonsContainer.tsx';
-import { useRole } from '../../context/role';
+import { useRole } from '../../contexts/role';
 import { typeRole } from '../../lib/const.ts';
-import { useModal } from '../../context/modal';
+import { useModal } from '../../contexts/modal';
 
 import styles from './Info.module.css';
 

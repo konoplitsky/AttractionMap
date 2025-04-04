@@ -61,7 +61,10 @@ export const AttractionForm = ({ type }: AttractionFormProps) => {
         />
       </div>
 
-      <input type='file' {...form.register('photo')} />
+      <div>
+        <input type='file' {...form.register('photo')} />
+        {form.errors.photo && <Text color='danger'>{form.errors.photo.message}</Text>}
+      </div>
 
       <Button view='action' type='submit' disabled={state.loading}>
         {state.loading ? 'Создание...' : 'Создать'}
@@ -69,5 +72,3 @@ export const AttractionForm = ({ type }: AttractionFormProps) => {
     </form>
   );
 };
-
-export default AttractionForm;

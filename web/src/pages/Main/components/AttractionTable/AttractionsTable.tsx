@@ -1,13 +1,6 @@
-import {
-  Table,
-  TableColumnConfig,
-  TableDataItem,
-  withTableActions,
-  withTableSelection
-} from '@gravity-ui/uikit';
+import { Table, TableColumnConfig, TableDataItem, withTableActions } from '@gravity-ui/uikit';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useRole } from '../../context/role';
+import { useRole } from '../../contexts/role';
 import { useActionsTable } from './hooks/useActionsTable.ts';
 import { typeRole } from '@/pages/Main/lib/const.ts';
 
@@ -19,14 +12,12 @@ interface AttractionsTableProps {
   attractions: Attraction[];
 }
 
-const MyTable = withTableSelection(Table);
-const NewTable = withTableActions(MyTable);
+const NewTable = withTableActions(Table);
 
 export const AttractionsTable = ({ attractions }: AttractionsTableProps) => {
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const navigate = useNavigate();
   const { role } = useRole();
   const { getRowActions } = useActionsTable();
-  const navigate = useNavigate();
 
   const columns: TableColumnConfig<TableDataItem>[] = [
     {
@@ -74,17 +65,14 @@ export const AttractionsTable = ({ attractions }: AttractionsTableProps) => {
     }
   ];
 
-  const TableComponent = role === typeRole.admin ? NewTable : MyTable;
+  const TableComponent = role === typeRole.admin ? NewTable : Table;
 
   return (
     <div className={styles.tableContainer}>
       <TableComponent
         data={attractions}
         columns={columns}
-        emptyMessage='Нет доступных достопримечательностей'
-        selectedIds={selectedIds}
-        onSelectionChange={setSelectedIds}
-        getRowActions={typeRole.admin ? getRowActions : undefined}
+        getRowActions={getRowActions}
         width='max'
         className={styles.table}
         onRowClick={(item) => {

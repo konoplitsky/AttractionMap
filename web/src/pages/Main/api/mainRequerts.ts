@@ -14,10 +14,6 @@ class MainRequests {
     return await http.delete(`/attraction/${id}`);
   }
 
-  async getAttractionById(id: string) {
-    return await http.get(`/attraction/${id}`);
-  }
-
   async updateAttraction(dto: FormData) {
     return await http.put('/attraction', dto);
   }

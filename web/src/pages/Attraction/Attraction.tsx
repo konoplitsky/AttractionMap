@@ -1,10 +1,11 @@
 import { Card, Text, Loader } from '@gravity-ui/uikit';
 import { useParams } from 'react-router-dom';
-import { useGetAttractionByIdQuery } from '@/pages/Main/api/hooks';
 import { AttractionHeader } from './components/AttractionHeader/AttractionHeader';
 import { AttractionImage } from './components/AttractionImage/AttractionImage';
 import { AttractionInfo } from './components/AttractionInfo/AttractionInfo';
 import { AttractionDetails } from './components/AttractionDetails/AttractionDetails';
+import { useGetAttractionByIdQuery } from './api/hooks';
+
 import styles from './Attraction.module.css';
 
 export const Attraction = () => {

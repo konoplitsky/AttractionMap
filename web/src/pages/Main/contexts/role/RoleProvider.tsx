@@ -1,5 +1,5 @@
 import { ReactNode, useMemo, useState } from 'react';
-import { RoleContext } from '@/pages/Main/context/role/RoleContext.tsx';
+import { RoleContext } from './RoleContext';
 import { typeRole } from '@/pages/Main/lib/const.ts';
 
 export interface RoleProviderProps {

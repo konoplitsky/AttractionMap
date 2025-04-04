@@ -2,7 +2,6 @@ import { CreateAttractionDto } from './dto/createAttraction.dto';
 import { DatabaseService } from '../database/postgres/database.service';
 import { Injectable } from '@nestjs/common';
 import { UpdateAttractionDto } from './dto/updateAttraction';
-import { UpdateStatusDto } from './dto/updateStatusDto';
 
 interface SaveAttractionData extends CreateAttractionDto {
   mapLink: string;
@@ -118,31 +117,6 @@ export class AttractionRepository {
     await this.db.attraction.delete({
       where: {
         id: id
-      }
-    });
-  }
-
-  async updateStatus(dto: UpdateStatusDto) {
-    return this.db.attraction.update({
-      data: {
-        id: dto.id,
-        status: dto.status
-      },
-      select: {
-        id: true,
-        createAt: true,
-        name: true,
-        description: true,
-        rating: true,
-        photo: true,
-        location: true,
-        latitude: true,
-        longitude: true,
-        mapLink: true,
-        status: true
-      },
-      where: {
-        id: dto.id
       }
     });
   }

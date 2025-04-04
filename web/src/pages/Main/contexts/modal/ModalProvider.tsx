@@ -1,5 +1,5 @@
 import { useState, ReactNode, useMemo } from 'react';
-import { ModalContext } from '@/pages/Main/context/modal/ModalContext.tsx';
+import { ModalContext } from './ModalContext';
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

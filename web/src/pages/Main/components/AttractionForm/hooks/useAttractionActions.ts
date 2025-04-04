@@ -4,8 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useCreateAttraction, useUpdateAttractionMutation } from '../../../api/hooks';
 import { attractionSchema } from '../../AttractionForm/validationSchema.ts';
-import { useModal } from '../../../context/modal';
-import { useRole } from '../../../context/role';
+import { useModal } from '../../../contexts/modal';
+import { useGetAttractionByIdQuery } from '@/pages/Attraction/api/hooks';
+import { useAttractionId } from '../../../contexts/attractionId';
+import { useEffect } from 'react';
 
 type AttractionFormData = z.infer<typeof attractionSchema>;
 
@@ -17,19 +19,28 @@ export const useAttractionForm = ({ type }: UseAttractionFormProps) => {
   const queryClient = useQueryClient();
   const createAttraction = useCreateAttraction();
   const updateAttraction = useUpdateAttractionMutation();
-  const { closeModal, closeUpdateModal } = useModal();
-  const { idAttraction } = useRole();
-  console.log('idAttraction', idAttraction);
 
-  const { register, handleSubmit, formState } = useForm<AttractionFormData>({
-    resolver: zodResolver(attractionSchema)
+  const { closeModal, closeUpdateModal } = useModal();
+  const { attractionId } = useAttractionId();
+  const getByIdAttraction = useGetAttractionByIdQuery(attractionId!);
+  const attractionData = getByIdAttraction.data?.data;
+
+  const { register, handleSubmit, formState, reset } = useForm<AttractionFormData>({
+    resolver: zodResolver(attractionSchema),
+    defaultValues: type === 'update' ? attractionData : null
   });
   const errors = formState.errors;
 
+  useEffect(() => {
+    if (type === 'update' && attractionData) {
+      reset(attractionData);
+    }
+  }, [type, attractionData, reset]);
+
   const onSubmit = handleSubmit(async (data) => {
     const formData = new FormData();
-    if (type === 'update' && idAttraction) {
-      formData.append('id', idAttraction);
+    if (type === 'update' && attractionId) {
+      formData.append('id', attractionId);
     }
     formData.append('name', data.name);
     formData.append('description', data.description);
